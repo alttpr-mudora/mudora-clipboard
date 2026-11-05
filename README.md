@@ -2,6 +2,8 @@
 
 An auto-tracker for the Copy Rod ALttP hack ("A Copy to the Past"). It reads the hack's enemy->item table and its "enemy found" bits through [SNI](https://github.com/alttpo/sni) and shows which enemies carry which items as you hit them with the rod. Nothing is written to the game.
 
+![mudora-clipboard](/assets/screenshot.png)
+
 # Usage
 
 SNI must be running, with a device for the Copy Rod ROM: snes9x-nwa (NWA), an FX Pak Pro, or an emulator connected through SNI's Lua bridge. Only the first matching device is used (`-device` matches part of its URI). By default only enemies you have hit are shown; the rest stay hidden.
@@ -48,7 +50,7 @@ Enemies found: 2 / 78
 - `/?overlay` gives a transparent page with only the feed, for an OBS browser source.
 - The page updates live (server-sent events from `/api/events`; `/api/state` returns the same JSON once).
 
-The sprites are mudora's item icons and the Zelda Dungeon wiki's enemy sprites, scaled so that every item icon is the same size and every enemy icon is the same size; see [internal/icons](internal/icons/README.md) for credits.
+The sprites are mudora's item icons and the Zelda Dungeon wiki's enemy sprites, scaled so that every item icon is the same size and every enemy icon is the same size; see [internal/icons](internal/icons/README.md) for credits. The logo and the favicon are mudora's.
 
 ## How it works
 

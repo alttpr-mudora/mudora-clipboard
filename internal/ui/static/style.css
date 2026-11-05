@@ -22,7 +22,8 @@ body {
 
 a { color: var(--accent); }
 header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-h1 { margin: 0; font-size: 20px; letter-spacing: 0.02em; }
+h1 { margin: 0; font-size: 20px; letter-spacing: 0.02em; display: flex; align-items: center; gap: 10px; }
+.logo { height: 40px; width: auto; }
 h2 { margin: 0 0 8px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
 
 #conn { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 13px; }

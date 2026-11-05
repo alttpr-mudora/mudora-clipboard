@@ -169,7 +169,7 @@ func TestWebStateAndIndex(t *testing.T) {
 		t.Errorf("decoded state: %+v", st)
 	}
 
-	for _, path := range []string{"/", "/app.js", "/style.css", "/img/" + icons.Item(0x02), "/img/" + icons.Enemy(0x00)} {
+	for _, path := range []string{"/", "/app.js", "/style.css", "/mudora.png", "/favicon.ico", "/img/" + icons.Item(0x02), "/img/" + icons.Enemy(0x00)} {
 		r, err := http.Get(srv.URL + path)
 		if err != nil {
 			t.Fatal(err)
