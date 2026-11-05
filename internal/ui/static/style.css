@@ -1,0 +1,129 @@
+:root {
+  --bg: #14161b;
+  --panel: #1c1f26;
+  --line: #2b2f3a;
+  --text: #e6e8ee;
+  --muted: #8a90a0;
+  --accent: #5ac8a8;
+  --found: #23332d;
+  --warn: #e0a84a;
+  --bad: #e0605a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 16px 20px 28px;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.4 "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+a { color: var(--accent); }
+header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+h1 { margin: 0; font-size: 20px; letter-spacing: 0.02em; }
+h2 { margin: 0 0 8px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+
+#conn { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 13px; }
+#dot { width: 10px; height: 10px; border-radius: 50%; background: var(--bad); }
+#dot.ok { background: var(--accent); }
+#dot.wait { background: var(--warn); }
+#dot.bad { background: var(--bad); }
+
+#progress { margin: 14px 0 6px; }
+#bar { height: 8px; background: var(--panel); border-radius: 4px; overflow: hidden; border: 1px solid var(--line); }
+#barFill { height: 100%; width: 0; background: var(--accent); transition: width 0.4s ease; }
+#count { margin-top: 6px; color: var(--muted); font-size: 13px; }
+
+#notice {
+  margin: 10px 0;
+  padding: 8px 12px;
+  background: var(--panel);
+  border-left: 3px solid var(--warn);
+  border-radius: 4px;
+}
+
+/* items on the left, the feed on the right */
+#layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 22px; align-items: start; margin-top: 12px; }
+#right { position: sticky; top: 14px; max-height: calc(100vh - 28px); overflow-y: auto; }
+@media (max-width: 900px) {
+  #layout { grid-template-columns: 1fr; }
+  #right { position: static; max-height: none; order: -1; }
+}
+
+#controls { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin: 0 0 12px; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.seg button { background: var(--panel); color: var(--muted); border: 0; padding: 6px 14px; font: inherit; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button.on { background: var(--accent); color: #0d1a15; font-weight: 600; }
+#filter {
+  background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 6px;
+  padding: 6px 10px; font: inherit; min-width: 160px;
+}
+#foundOnlyLabel { color: var(--muted); font-size: 13px; display: flex; align-items: center; gap: 6px; cursor: pointer; }
+
+/* sprites are pixel art, scaled ahead of time: shown at natural size, never smoothed */
+.sprite-box { display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.item-sprite { width: 36px; height: 36px; }    /* item icons are normalized to 32 px */
+.enemy-sprite { width: 44px; height: 44px; }   /* enemy icons are normalized to 40 px */
+.sprite-box img { image-rendering: pixelated; }
+
+/* item list: one card per item, the enemies found with it underneath */
+#content.items { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; align-items: stretch; }
+.item-card { background: var(--found); border: 1px solid #35503f; border-radius: 6px; padding: 8px 10px; }
+.item-card.none { background: var(--panel); border-color: var(--line); }
+.item-card.none .sprite-box img { filter: grayscale(1) brightness(0.55); }
+.item-card.none .item-name { color: var(--muted); }
+.item-head { display: flex; align-items: center; gap: 8px; }
+.item-name { font-weight: 600; flex: 1; }
+.item-head .n { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.enemy-list { list-style: none; margin: 6px 0 0; padding: 6px 0 0; border-top: 1px solid var(--line); }
+.enemy-list li { display: flex; align-items: center; gap: 8px; padding: 1px 0; }
+.enemy-list li.unfound { color: var(--muted); font-style: italic; }
+.enemy-list li.unfound .sprite-box img { filter: grayscale(1) brightness(0.6); }
+.none-note { margin: 6px 0 0 44px; color: var(--muted); font-size: 13px; }
+
+/* alternative view: one card per enemy */
+#content.enemies { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
+.card {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px;
+  display: flex; align-items: center; gap: 8px; min-height: 54px;
+}
+.card .text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.card .name { font-weight: 600; }
+.card .item { color: var(--muted); }
+.card:not(.found) .sprite-box img { filter: grayscale(1) brightness(0.6); }
+.card.found { background: var(--found); border-color: #35503f; }
+.card.found .item { color: var(--accent); font-weight: 600; }
+.card.hidden-item .item { letter-spacing: 0.2em; }
+.card.revealed:not(.found) .item { color: var(--warn); font-style: italic; }
+
+/* the feed */
+#recentList { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+#recentList li {
+  display: flex; gap: 10px; align-items: center;
+  padding: 6px 10px;
+  background: var(--found);
+  border-radius: 4px;
+}
+#recentList li:first-child { border-left: 3px solid var(--accent); }
+#recentList .text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+#recentList .item { color: var(--accent); font-weight: 600; }
+#recentList .name { color: var(--text); }
+#recentList .at { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; align-self: flex-start; }
+#recentEmpty { color: var(--muted); margin: 0; font-size: 13px; }
+
+.empty { color: var(--muted); padding: 18px 4px; grid-column: 1 / -1; }
+footer { margin-top: 26px; color: var(--muted); font-size: 12px; }
+code { background: var(--panel); padding: 1px 5px; border-radius: 3px; }
+
+body.stale #content, body.stale #progress { opacity: 0.55; }
+
+/* ?overlay: transparent, compact, only the feed; for a browser source in OBS */
+body.overlay { background: transparent; padding: 8px; font-size: 16px; }
+body.overlay header, body.overlay #left, body.overlay footer, body.overlay #progress, body.overlay h2 { display: none; }
+body.overlay #layout { display: block; margin: 0; }
+body.overlay #right { position: static; max-height: none; }
+body.overlay #recentList li { background: rgba(20, 22, 27, 0.82); }
+body.overlay #recentEmpty { display: none; }

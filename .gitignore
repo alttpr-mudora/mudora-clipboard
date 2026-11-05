@@ -1,0 +1,6 @@
+*.sfc
+*.smc
+
+*.exe
+
+tmp/

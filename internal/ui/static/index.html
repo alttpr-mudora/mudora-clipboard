@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>mudora-clipboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>mudora-clipboard</h1>
+  <div id="conn"><span id="dot" class="bad"></span><span id="connText">connecting...</span></div>
+</header>
+
+<section id="progress">
+  <div id="bar"><div id="barFill"></div></div>
+  <div id="count">0 / 78 enemies found</div>
+</section>
+
+<div id="notice" hidden></div>
+
+<div id="layout">
+  <div id="left">
+    <nav id="controls">
+      <div class="seg" role="group" aria-label="View">
+        <button id="viewItem" type="button">By item</button>
+        <button id="viewEnemy" type="button">By enemy</button>
+      </div>
+      <input id="filter" type="search" placeholder="Filter..." aria-label="Filter">
+      <label id="foundOnlyLabel"><input id="foundOnly" type="checkbox"> Found only</label>
+    </nav>
+    <main id="content"></main>
+  </div>
+
+  <aside id="right">
+    <section id="recent">
+      <h2>Just found</h2>
+      <ul id="recentList"></ul>
+      <p id="recentEmpty">Nothing yet. Hit enemies with the Copy Rod.</p>
+    </section>
+  </aside>
+</div>
+
+<footer>
+  Items of enemies you have not hit stay hidden. Add <code>?overlay</code> to the address for a transparent stream overlay.
+  Sprites from <a href="https://github.com/alttpr-mudora/mudora">mudora</a> and the Zelda Dungeon wiki.
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
