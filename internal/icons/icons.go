@@ -33,8 +33,7 @@ func Item(id byte) string {
 }
 
 // Enemy returns the path of the sprite for an enemy sprite type, or "" if it has none. Guard variants that look
-// alike share a file. Two enemies have none: Rock Hoarder (0x3E, the source's Hoarder is the bush one) and
-// Stalfos Head (0x7C).
+// alike share a file.
 func Enemy(t byte) string {
 	if f, ok := enemyFiles[t]; ok {
 		return "enemies/" + f
@@ -99,8 +98,9 @@ var enemyFiles = map[byte]string{
 	0x24: "Blue-Bari-1.png",                // Blue Bari
 	0x26: "Blue-Hardhat-Beetle-1.png",      // Hardhat Beetle
 	0x27: "Deadrock-Sprite-2.png",          // Deadrock
+	0x3E: "Hoarder-Sprite-3.png",           // Rock Hoarder
 	0x41: "Blue-Sword-Soldier-Sprite.png",  // Blue Guard
-	0x42: "Soldier-Sprite.png",             // Green Guard
+	0x42: "Green-Sword-Soldier-Sprite.png", // Green Guard
 	0x43: "Red-Spear-Soldier-Sprite-1.png", // Red Spear Guard
 	0x44: "Blue-Sword-Soldier-Sprite.png",  // Fast Blue Guard
 	0x45: "Red-Spear-Soldier-Sprite-1.png", // Fast Red Guard / Summoned Guard
@@ -109,10 +109,10 @@ var enemyFiles = map[byte]string{
 	0x48: "Spear-Soldier-Sprite-1.png",     // Red Javelin Guard
 	0x49: "Red-Spear-Soldier-Sprite-1.png", // Red Bush Guard
 	0x4A: "Bomb-Knight-Sprite.png",         // Bomb Guard
-	0x4B: "Green-Sword-Soldier-Sprite.png", // Green Knife Guard
+	0x4B: "Soldier-Sprite.png",             // Green Knife Guard
 	0x4C: "Geldman-Sprite.png",             // Geldman
 	0x4D: "Toppo-Sprite-1.png",             // Toppo
-	0x4E: "Popo-1.png",                     // Popo
+	0x4F: "Popo-1.png",                     // Popo
 	0x51: "Armos-Sprite-1.png",             // Armos Statue
 	0x55: "Zora-Sprite-1.png",              // Shooting Zora
 	0x56: "Zora-Sprite-3.png",              // Walking Zora
@@ -124,6 +124,7 @@ var enemyFiles = map[byte]string{
 	0x6F: "Keese-Sprite.png",               // Keese
 	0x71: "Leever-Green-1.png",             // Leever
 	0x79: "Bee-2.png",                      // Bee
+	0x7C: "Stalfos-Head.png",               // Stalfos Head
 	0x81: "Hover-1.png",                    // Hover
 	0x83: "Eyegore.png",                    // Green Eyegore / Mimic
 	0x84: "Red-Eyegore-Sprite-2.png",       // Red Eyegore / Mimic
