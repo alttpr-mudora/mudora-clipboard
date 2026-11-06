@@ -2,6 +2,8 @@
 
 An auto-tracker for the Copy Rod ALttP hack ("A Copy to the Past"). It reads the hack's enemy->item table and its "enemy found" bits through [SNI](https://github.com/alttpo/sni) and shows which enemies carry which items as you hit them with the rod. Nothing is written to the game.
 
+In other words, when you copy, everything is tracked in your clipboard!
+
 ![mudora-clipboard](/assets/screenshot.png)
 
 # Usage
