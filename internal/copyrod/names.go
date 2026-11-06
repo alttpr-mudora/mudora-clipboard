@@ -48,7 +48,7 @@ var Enemies = []Enemy{
 	{0x4B, "Green Knife Guard"},
 	{0x4C, "Geldman"},
 	{0x4D, "Toppo"},
-	{0x4E, "Popo"},
+	{0x4F, "Popo"},
 	{0x51, "Armos Statue"},
 	{0x55, "Shooting Zora"},
 	{0x56, "Walking Zora"},

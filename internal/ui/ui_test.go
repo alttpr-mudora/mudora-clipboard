@@ -342,7 +342,7 @@ func TestStateJSONDoesNotLeakItems(t *testing.T) {
 			t.Fatalf("%s appears under an item although it was not found: %s", e.Name, js)
 		}
 	}
-	if !strings.Contains(js, `{"name":"Green Knife Guard","found":true,"sprite":"enemies/Green-Sword-Soldier-Sprite.png"}`) {
+	if !strings.Contains(js, `{"name":"Green Knife Guard","found":true,"sprite":"enemies/Soldier-Sprite.png"}`) {
 		t.Errorf("the found enemy should be listed under its item: %s", js)
 	}
 	if !strings.Contains(js, `"enemies":[]`) {
@@ -364,7 +364,7 @@ func TestEnemySpritesInState(t *testing.T) {
 		t.Errorf("an unfound enemy shows its sprite but not its item: %+v", raven)
 	}
 	knife := findEnemy(t, st, "Green Knife Guard")
-	if knife.Sprite != "enemies/Green-Sword-Soldier-Sprite.png" || knife.ItemSprite != icons.Item(s.EnemyMap[0x4B]) {
+	if knife.Sprite != "enemies/Soldier-Sprite.png" || knife.ItemSprite != icons.Item(s.EnemyMap[0x4B]) {
 		t.Errorf("a found enemy shows both: %+v", knife)
 	}
 

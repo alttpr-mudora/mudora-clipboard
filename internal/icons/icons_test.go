@@ -11,12 +11,6 @@ import (
 	"github.com/alttpr-mudora/mudora-clipboard/internal/icons"
 )
 
-// Enemies the source of the enemy sprites has none for.
-var enemiesWithoutSprite = map[byte]bool{
-	0x3E: true, // Rock Hoarder: the source's Hoarder is the bush one
-	0x7C: true, // Stalfos Head
-}
-
 // The icon boxes in the web UI (static/style.css), and the size the sprite files were scaled to (their longest side).
 const (
 	itemBox     = 36
@@ -60,13 +54,8 @@ func TestEnemySprites(t *testing.T) {
 	for _, e := range copyrod.Enemies {
 		p := icons.Enemy(e.Type)
 		if p == "" {
-			if !enemiesWithoutSprite[e.Type] {
-				t.Errorf("%s (%02X) has no sprite", e.Name, e.Type)
-			}
+			t.Errorf("%s (%02X) has no sprite", e.Name, e.Type)
 			continue
-		}
-		if enemiesWithoutSprite[e.Type] {
-			t.Errorf("%s now has a sprite; drop it from enemiesWithoutSprite", e.Name)
 		}
 		isPNG(t, p)
 	}
